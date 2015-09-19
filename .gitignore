@@ -1,0 +1,13 @@
+.DS_Store
+*.DS_Store
+.git/
+.git/*
+*.zip
+*.gzip
+node_modules/
+node_modules/*
+docs/
+docs/*
+*.log
+gulp.publish.js
+*.sh
