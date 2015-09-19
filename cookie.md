@@ -1,21 +1,20 @@
 # cookie 中的坑 （只针对chrome）
 
-## 基础的概念
+## 常见的坑
 
 - 1、cookie并不是每个域名下4K限制，而是每个路径下；
 
-- 2、域名的cookie最大值不一定4K；
+- 2、cookie最大值不一定是4K；
 
 - 3、cookie会随每个请求发送到后端（包括父域），所以不宜设置过多cookie；
 
-- 4、cookie如果未设置时间，浏览器关闭以后cookie并不一定会被清空；
+- 4、cookie如果未设置expires，浏览器关闭以后cookie并不一定会被清空；
 
 
 ## 读cookie
 
-- 1、同一域名下，首先读取当前路径下的cookie。如当前路径下无cookie，则依次往上级目录读；
+- 1、同一域名下，首先读取当前路径下的cookie。如当前路径下无cookie，则依次往上级目录（不包含根目录）读取；
 
-	总结：在当前域名下，当前目录或上级目录下存在cookie，则依次读取当前目录及上级目录（不包含根目录）存在的cookie
 
 ```javascript
 
@@ -32,7 +31,7 @@ console.log(cookie("name"));
 
 ```
 
-- 2、父子域名存在相同cookie的情况下，如当前域名下的当前目录且上级目录（不包含根目录）未存在cookie，则默认读取最先被修改的 cookie（谁最先赋值，取最先赋值的cookie）。
+- 2、父子域名存在相同cookie的情况下，如当前域名下的当前目录且上级目录（不包含根目录）未存在cookie，则默认读取最先被修改的 cookie（谁最先赋值，读取最先赋值的cookie）。
 
 ```javascript
 
@@ -91,7 +90,7 @@ console.log(cookie("name"));
 
 - 2、不传递domain，则默认写到当前域名的当前路径下；
 
-- 3、不传递expires，则大多数浏览器关闭会清除cookie；
+- 3、不传递 expires，则大多数浏览器关闭会清除cookie；
 
 ## 删除cookie
 
