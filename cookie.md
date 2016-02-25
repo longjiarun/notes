@@ -86,9 +86,9 @@ console.log(cookie("name"));
 
 ## 写cookie
 
-- 1、不传递path，则默认写到根路径下；
+- 1、不传递path，则默认写到当前路径下；
 
-- 2、不传递domain，则默认写到当前域名的当前路径下；
+- 2、不传递domain，则默认写到当前域名下；
 
 - 3、不传递 expires，则大多数浏览器关闭会清除cookie；
 
